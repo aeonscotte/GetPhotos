@@ -1,7 +1,8 @@
 <div class="container">
-  <div class="box">
+  <div class="box content">
     <h1 class="title">Photo Fetcher</h1>
     <app-get-button (getPhoto)="onPhotoRequest()"></app-get-button>
-    <app-photo [url]="photoUrl"></app-photo>
+    <app-photo [url]="imageUrl" [alt]="imageAlt"></app-photo>
+    <p>{{imageAlt}}</p>
   </div>
 </div>

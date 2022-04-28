@@ -8,7 +8,8 @@ import { ImageService } from '../image.service';
 })
 export class PhotosHomeComponent implements OnInit {
 
-  photoUrl: any;
+  imageUrl = '';
+  imageAlt = '';
 
   constructor(private imageService: ImageService) { }
 
@@ -17,7 +18,13 @@ export class PhotosHomeComponent implements OnInit {
   }
 
   onPhotoRequest() {
-    this.imageService.getPhoto().subscribe((photo) => { this.photoUrl = photo; console.log(this.photoUrl) });
+    this.imageService.getPhoto()
+      .subscribe(
+        (response) => {
+          this.imageAlt = response.photos[0].alt;
+          this.imageUrl = response.photos[0].src.portrait;
+        }
+      );
   }
 
 }

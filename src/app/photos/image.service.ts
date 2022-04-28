@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { pluck } from 'rxjs';
 
+import { PexelsResponse } from './pexels-response';
+
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +15,7 @@ export class ImageService {
   constructor(private http: HttpClient) { }
 
   getPhoto() {
-    console.log('getting photo...');
-    return this.http.get(
+    return this.http.get<PexelsResponse>(
       'https://api.pexels.com/v1/curated',
       {
         headers: {
@@ -25,8 +26,9 @@ export class ImageService {
           page: Math.floor(Math.random() * 500)
         }
       }
-    ).pipe(
-      pluck('photos', '0', 'src', 'portrait')
     )
+    // .pipe(
+    //   pluck('photos', '0')
+    // )
   }
 }
